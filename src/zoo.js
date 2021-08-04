@@ -5,6 +5,10 @@ const getSpeciesByIds = (...ids) => species.filter((animal) => ids.includes(anim
 
 function getAnimalsOlderThan(animal, age) {
   // seu código aqui
+  const olderThan = species.find((iten) =>
+    iten.name === animal).residents.every((resident) =>
+    resident.age >= age);
+  return olderThan;
 }
 
 function getEmployeeByName(employeeName) {
