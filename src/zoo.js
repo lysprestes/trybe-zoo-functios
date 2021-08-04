@@ -1,4 +1,4 @@
-const { species } = require('./data');
+const { species, employees } = require('./data');
 
 const getSpeciesByIds = (...ids) => species.filter((animal) => ids.includes(animal.id));
 // seu código aqui
@@ -13,6 +13,8 @@ function getAnimalsOlderThan(animal, age) {
 
 function getEmployeeByName(employeeName) {
   // seu código aqui
+  if (!employeeName) return {}; // resumao do Leozin de como deixar as coisas curtinhas :D
+  return employees.find((emp) => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
