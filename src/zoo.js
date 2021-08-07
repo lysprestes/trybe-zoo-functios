@@ -3,7 +3,7 @@ const {
   species,
   employees,
   prices,
-  hours
+  hours,
 } = require('./data');
 
 const getSpeciesByIds = (...ids) => species.filter((animal) => ids.includes(animal.id));
@@ -28,7 +28,7 @@ function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return {
     ...personalInfo,
-    ...associatedWith
+    ...associatedWith,
   }; // essa é uma estrutura de dados que pode ser utilizada para criar um objeto
 }
 
@@ -44,7 +44,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   }; // criando um objeto com os parametros passados
   employees.push(newEmployee); // adicionando o employee na lista de employees
 }
@@ -59,7 +59,7 @@ function countAnimals(spc) {
     return spcCount;
   }
   return species.find(({
-    name
+    name,
   }) => name === spc).residents.length; // ({ name }) esta desestruturando o objeto e retornando o valor do nome, pegando apenas esta chave e valor
   // outra forma de resolver: retun species.find((animal) => animal.name === spc).residents.length;))
 }
