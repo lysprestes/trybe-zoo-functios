@@ -52,10 +52,11 @@ function calculateEntry(entrants = 0) {
   return Object.keys(entrants).reduce((acc, crr) => acc + entrants[crr] * prices[crr], 0); // Object.keys esta retornando um array com as chaves do objeto entrants
   // acc vai inicar com NUMERO zero, prevenindo que seja undefined
   // o crr vai somar o valor atual ao acc, para cada chave do entrants
-} 
+}
 
 function getAnimalMap(options) {
   // seu código aqui
+  // pular por enquanto
 }
 
 function getSchedule(dayName) {
