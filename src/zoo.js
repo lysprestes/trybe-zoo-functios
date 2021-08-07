@@ -35,11 +35,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function countAnimals(spc) {
   // seu código aqui
-  
+  if (!spc) { // caso nao seja informado parametro algum, sera retornado o objeto com todos os animais e suas quantidades (chave e valor respectivamente)
+    const spcCount = {};
+    species.forEach((animal) => {
+      spcCount[animal.name] = animal.residents.length; // adicionando nome e quantidade dos animais nesse objeto criaado
+    });
+    return spcCount;
+  }
+  return species.find(({ name }) => name === spc).residents.length; // ({ name }) esta desestruturando o objeto e retornando o valor do nome, pegando apenas esta chave e valor
+  // retun species.find((animal) => animal.name === spc).residents.length;)) outra forma de resolver
 }
 
 function calculateEntry(entrants) {
   // seu código aqui
+
 }
 
 function getAnimalMap(options) {
