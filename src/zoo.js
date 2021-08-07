@@ -1,4 +1,4 @@
-const { species, employees } = require('./data');
+const { species, employees, prices } = require('./data');
 
 const getSpeciesByIds = (...ids) => species.filter((animal) => ids.includes(animal.id));
 // seu código aqui
@@ -43,13 +43,16 @@ function countAnimals(spc) {
     return spcCount;
   }
   return species.find(({ name }) => name === spc).residents.length; // ({ name }) esta desestruturando o objeto e retornando o valor do nome, pegando apenas esta chave e valor
-  // retun species.find((animal) => animal.name === spc).residents.length;)) outra forma de resolver
+  // outra forma de resolver: retun species.find((animal) => animal.name === spc).residents.length;))
 }
 
-function calculateEntry(entrants) {
+function calculateEntry(entrants = 0) {
   // seu código aqui
-
-}
+  // function calculateEntry(entrants = 0) eh igual a if (!entrants) return 0;
+  return Object.keys(entrants).reduce((acc, crr) => acc + entrants[crr] * prices[crr], 0); // Object.keys esta retornando um array com as chaves do objeto entrants
+  // acc vai inicar com NUMERO zero, prevenindo que seja undefined
+  // o crr vai somar o valor atual ao acc, para cada chave do entrants
+} 
 
 function getAnimalMap(options) {
   // seu código aqui
