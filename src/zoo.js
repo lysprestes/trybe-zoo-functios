@@ -95,7 +95,15 @@ function getSchedule(dayName) {
 
 function getOldestFromFirstSpecies(id) {
   // seu código aqui
+  const animalId = employees.find((emp) => emp.id === id).responsibleFor[0]; // pega o id do primeiro animal[0] que o funcionario eh responsavel passado por parametro
+  // essa const vai armazenar o id do primeiro animal do funcionario
+  const animal = species.find((anm) => anm.id === animalId); // essa const esta armazenando o objeto do animal com a id armazenada no const anterior
+  return animal.residents.sort((a, b) =>
+    b.age - a.age).map(({ name, sex, age }) => [name, sex, age])[0];
 }
+// sort((a, b) => b.age - a.age) esta ordenando em ordem decrescente com base no parametro idade
+// map(({ name, sex, age }) esta desestruturando o objeto e pegando as chaves name, sex e age como parametro e jogando os valores dessas chaves em um novo array
+// => [name, sex, age])[0] vai retornar ['Vicky', 'female', 12] ex.;
 
 function increasePrices(percentage) {
   // seu código aqui
