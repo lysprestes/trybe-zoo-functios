@@ -99,7 +99,11 @@ function getOldestFromFirstSpecies(id) {
   // essa const vai armazenar o id do primeiro animal do funcionario
   const animal = species.find((anm) => anm.id === animalId); // essa const esta armazenando o objeto do animal com a id armazenada no const anterior
   return animal.residents.sort((a, b) =>
-    b.age - a.age).map(({ name, sex, age }) => [name, sex, age])[0];
+    b.age - a.age).map(({
+    name,
+    sex,
+    age,
+  }) => [name, sex, age])[0];
 }
 // sort((a, b) => b.age - a.age) esta ordenando em ordem decrescente com base no parametro idade
 // map(({ name, sex, age }) esta desestruturando o objeto e pegando as chaves name, sex e age como parametro e jogando os valores dessas chaves em um novo array
@@ -116,6 +120,23 @@ function increasePrices(percentage) {
 
 function getEmployeeCoverage(idOrName) {
   // seu código aqui
+  let fullName; // nome completo do funcionario
+  let employeeObj; // objeto do funcionario
+  const obj = employees.reduce((acc, crr) => { // usando reduce pois ira retornar um objeto, enquanto map retornaria um array. Pegando elementos do array emplooyees
+    let arr = []; // criando um array para armazenar os elementos do array emplooyees
+    arr = crr.responsibleFor.map((aniId) => species.find((animal) => aniId === animal.id).name); // arr vai ser o array com os nomes dos animais que o funcionario eh responsavel por
+    acc[`${crr.firstName} ${crr.lastName}`] = arr;
+    return acc;
+  }, {});
+  if (!idOrName) return obj; // caso nao seja passado parametro, retorna o objeto com todos os funcionarios e suas responsabilidades
+  if (idOrName) {
+    employeeObj = employees.find((empl) => // atribuindo o objeto do funcionario que seja igual ao id ou name passado por parametro
+      empl.id === idOrName || empl.firstName === idOrName || empl.lastName === idOrName); // pegando o id, firstName ou lastName do funcionario
+    fullName = `${employeeObj.firstName} ${employeeObj.lastName}`;
+    const newObj = {}; // novo objeto retornado caso o funcionario seja encontrado
+    newObj[fullName] = obj[fullName];
+    return newObj;
+  }
 }
 
 module.exports = {
